@@ -20,5 +20,10 @@ public class ToDolyApp {
 
         list.listTasks();
 
+        CLI cli = new CLI();
+        cli.printMenu();
+        cli.readUserInput();
+        cli.processInput();
+
     }
 }
