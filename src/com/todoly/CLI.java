@@ -3,8 +3,6 @@ package com.todoly;
 import java.util.Scanner;
 
 public class CLI {
-
-    private String userInput;
     private Scanner reader;
     private static final String[] VALID_INPUTS = {"1", "2", "3"};
 
@@ -25,11 +23,10 @@ public class CLI {
 
     public String readUserInput() {
         String inputLine = reader.nextLine();
-        userInput = inputLine;
-        return userInput;
+        return inputLine;
     }
 
-    private boolean validInput() {
+    private boolean validInput(String userInput) {
         if (userInput == null) {
             return false;
         }
@@ -41,10 +38,10 @@ public class CLI {
         return false;
     }
 
-    public boolean processInput() {
+    public boolean processInput(String userInput) {
         boolean valid;
 
-        if (validInput()) {
+        if (validInput(userInput)) {
             if (userInput.equals("1")) {
                 System.out.println("ok");
             }
@@ -69,8 +66,8 @@ public class CLI {
         boolean valid = false;
         while (!valid) {
             printMenu();
-            readUserInput();
-            valid = processInput();
+            String userInput = readUserInput();
+            valid = processInput(userInput);
         }
 
     }
