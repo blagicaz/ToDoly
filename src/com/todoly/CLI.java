@@ -41,7 +41,8 @@ public class CLI {
         return false;
     }
 
-    public void processInput() {
+    public boolean processInput() {
+        boolean valid;
 
         if (validInput()) {
             if (userInput.equals("1")) {
@@ -53,9 +54,23 @@ public class CLI {
             else if (userInput.equals("3")) {
                 System.out.println("ok");
             }
+            valid = true;
         }
         else {
             System.out.println("unknown input");
+            valid = false;
+        }
+
+        return valid;
+    }
+
+    public void run() {
+
+        boolean valid = false;
+        while (!valid) {
+            printMenu();
+            readUserInput();
+            valid = processInput();
         }
 
     }
