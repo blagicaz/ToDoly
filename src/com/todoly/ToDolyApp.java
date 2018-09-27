@@ -47,9 +47,10 @@ public class ToDolyApp {
     }
 
     public void run() {
+        cli.printWelcomeMessage();
         boolean quit = false;
         while (!quit) {
-            cli.printMenu();
+            cli.printMenuOptions();
             String userInput = cli.readUserInput();
             quit = processInput(userInput);
         }

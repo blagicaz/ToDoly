@@ -11,9 +11,17 @@ public class CLI {
     }
 
     public void printMenu() {
-        System.out.println();
+        printWelcomeMessage();
+        printMenuOptions();
+    }
+
+    public void printWelcomeMessage() {
         System.out.println(">> Welcome to ToDoly");
         System.out.println(">> You have X tasks todo and Y tasks are done!");
+    }
+
+    public void printMenuOptions() {
+        System.out.println();
         System.out.println(">> Pick an option:");
         System.out.println(">> (1) Show Task List");
         System.out.println(">> (2) Add New Task");
