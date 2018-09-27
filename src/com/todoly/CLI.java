@@ -26,7 +26,7 @@ public class CLI {
 
     public void printTasks(TaskList taskList) {
         for (Task task : taskList.getTasks()) {
-            System.out.println(task);
+            System.out.println(task.toString());
         }
     }
 

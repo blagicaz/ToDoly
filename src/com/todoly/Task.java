@@ -7,9 +7,15 @@ public class Task {
     private boolean complete;
     private String project;
 
-    public Task(String title) {
+    public Task(String title, String dueDate, String project) {
         this.title = title;
         this.complete = false;
+        this.dueDate = dueDate;
+        this.project = project;
+    }
+
+    public Task(String title) {
+        this(title, null, null);
     }
 
     public String getTitle() {
@@ -28,9 +34,26 @@ public class Task {
         this.complete = complete;
     }
 
-    public String toString() {
+    public String getDueDate() {
+        return dueDate;
+    }
 
-        String result = title + ": ";
+    public void setDueDate(String dueDate) {
+        this.dueDate = dueDate;
+    }
+
+    public String getProject() {
+        return project;
+    }
+
+    public void setProject(String project) {
+        this.project = project;
+    }
+
+    public String toString() {
+        String result = "    ~~~~~~~~~~~\n";
+
+        result += "Task:\t\t" + title + "\nStatus:\t\t";
 
         if (complete) {
             result += "done";
@@ -38,7 +61,10 @@ public class Task {
         else {
             result += "not done";
         }
+        result += "\nDue Date:\t" + dueDate;
+        result += "\nProject:\t" + project + "\n";
 
         return result;
+
     }
 }

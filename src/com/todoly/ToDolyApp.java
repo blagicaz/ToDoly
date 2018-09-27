@@ -28,9 +28,12 @@ public class ToDolyApp {
     public void createTask() {
         System.out.print("Enter task title: ");
         String title = cli.readUserInput();
-        Task t = new Task(title);
+        System.out.print("Enter task project: ");
+        String project = cli.readUserInput();
+        System.out.print("Enter due date (format: YYYY-MM-DD): ");
+        String dueDate = cli.readUserInput();
+        Task t = new Task(title, dueDate, project);
         taskList.addTask(t);
-        System.out.println("You have created a new task");
     }
 
     // Processing the user input.
