@@ -2,11 +2,11 @@ package com.todoly;
 
 public class ToDolyApp {
 
-    private TaskList list;
+    private TaskList taskList;
     private CLI cli;
 
     public ToDolyApp() {
-        list = new TaskList();
+        taskList = new TaskList();
         cli = new CLI();
     }
 
@@ -18,14 +18,10 @@ public class ToDolyApp {
         t3.setComplete(true);
         Task t4 = new Task("watch tv");
 
-        TaskList list = new TaskList();
-
-        list.addTask(t1);
-        list.addTask(t2);
-        list.addTask(t3);
-        list.addTask(t4);
-
-        list.listTasks();
+        taskList.addTask(t1);
+        taskList.addTask(t2);
+        taskList.addTask(t3);
+        taskList.addTask(t4);
     }
 
     public boolean processInput(String userInput) {
@@ -33,7 +29,7 @@ public class ToDolyApp {
 
         if (cli.validInput(userInput)) {
             if (userInput.equals("1")) {
-                System.out.println("show tasks");
+                cli.printTasks(taskList);
             }
             else if (userInput.equals("2")) {
                 System.out.println("add new task");
@@ -70,7 +66,6 @@ public class ToDolyApp {
         ToDolyApp app = new ToDolyApp();
         app.tempCreateTasks();
         app.run();
-
 
     }
 

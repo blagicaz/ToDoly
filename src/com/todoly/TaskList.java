@@ -6,17 +6,15 @@ public class TaskList {
 
     private ArrayList<Task> tasks;
 
-        public TaskList() {
-            tasks = new ArrayList<>();
-        }
+    public TaskList() {
+        tasks = new ArrayList<>();
+    }
 
-        public void addTask(Task newTask) {
-            tasks.add(newTask);
-        }
+    public void addTask(Task newTask) {
+        tasks.add(newTask);
+    }
 
-        public void listTasks() {
-            for(Task task : tasks) {
-                System.out.println(task);
-            }
-        }
+    public ArrayList<Task> getTasks() {
+        return tasks;
+    }
 }

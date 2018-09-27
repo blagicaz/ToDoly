@@ -21,6 +21,12 @@ public class CLI {
         System.out.print("> ");
     }
 
+    public void printTasks(TaskList taskList) {
+        for (Task task : taskList.getTasks()) {
+            System.out.println(task);
+        }
+    }
+
     public String readUserInput() {
         String inputLine = reader.nextLine();
         return inputLine;
