@@ -24,6 +24,14 @@ public class ToDolyApp {
         taskList.addTask(t4);
     }
 
+    public void createTask() {
+        System.out.print("Enter task title: ");
+        String title = cli.readUserInput();
+        Task t = new Task(title);
+        taskList.addTask(t);
+        System.out.println("You have created a new task");
+    }
+
     public boolean processInput(String userInput) {
         boolean quit = false;
 
@@ -32,14 +40,15 @@ public class ToDolyApp {
                 cli.printTasks(taskList);
             }
             else if (userInput.equals("2")) {
-                System.out.println("add new task");
+                createTask();
             }
             else if (userInput.equals("3")) {
                 System.out.println("Exiting app");
                 quit = true;
             }
 
-        } else {
+        }
+        else {
             System.out.println("unknown input");
         }
 
@@ -58,17 +67,9 @@ public class ToDolyApp {
 
     public static void main(String[] args) {
 
-//        CLI cli = new CLI();
-
-//        cli.printMenu();
-//        cli.readUserInput();
-//        cli.processInput();.run();
-
         ToDolyApp app = new ToDolyApp();
         app.tempCreateTasks();
         app.run();
-
     }
-
 }
 
