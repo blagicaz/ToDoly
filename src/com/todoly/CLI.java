@@ -10,11 +10,6 @@ public class CLI {
         reader = new Scanner(System.in);
     }
 
-    public void printMenu() {
-        printWelcomeMessage();
-        printMenuOptions();
-    }
-
     public void printWelcomeMessage() {
         System.out.println(">> Welcome to ToDoly");
         System.out.println(">> You have X tasks todo and Y tasks are done!");
@@ -40,6 +35,8 @@ public class CLI {
         return inputLine;
     }
 
+    // Checks whether the user input is one of the valid inputs.
+    // Returns true if it is, false otherwise.
     public boolean validInput(String userInput) {
         if (userInput == null) {
             return false;

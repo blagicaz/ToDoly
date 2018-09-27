@@ -9,7 +9,7 @@ public class ToDolyApp {
         taskList = new TaskList();
         cli = new CLI();
     }
-
+    // Temporary method used for testing/to be deleted in future
     public void tempCreateTasks() {
         Task t1 = new Task("buy beer");
         t1.setComplete(true);
@@ -24,6 +24,7 @@ public class ToDolyApp {
         taskList.addTask(t4);
     }
 
+    // Create all the tasks with assigned title
     public void createTask() {
         System.out.print("Enter task title: ");
         String title = cli.readUserInput();
@@ -32,6 +33,8 @@ public class ToDolyApp {
         System.out.println("You have created a new task");
     }
 
+    // Processing the user input.
+    // Return true if the user choose to quit, false for all the other options.
     public boolean processInput(String userInput) {
         boolean quit = false;
 
@@ -55,6 +58,8 @@ public class ToDolyApp {
         return quit;
     }
 
+    // Main command loop.
+    // Prints the menu and waits for user input until the user chooses to quit.
     public void run() {
         cli.printWelcomeMessage();
         boolean quit = false;
