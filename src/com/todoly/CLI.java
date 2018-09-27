@@ -26,7 +26,7 @@ public class CLI {
         return inputLine;
     }
 
-    private boolean validInput(String userInput) {
+    public boolean validInput(String userInput) {
         if (userInput == null) {
             return false;
         }
@@ -36,40 +36,6 @@ public class CLI {
             }
         }
         return false;
-    }
-
-    public boolean processInput(String userInput) {
-        boolean valid;
-
-        if (validInput(userInput)) {
-            if (userInput.equals("1")) {
-                System.out.println("ok");
-            }
-            else if (userInput.equals("2")) {
-                System.out.println("ok");
-            }
-            else if (userInput.equals("3")) {
-                System.out.println("ok");
-            }
-            valid = true;
-        }
-        else {
-            System.out.println("unknown input");
-            valid = false;
-        }
-
-        return valid;
-    }
-
-    public void run() {
-
-        boolean valid = false;
-        while (!valid) {
-            printMenu();
-            String userInput = readUserInput();
-            valid = processInput(userInput);
-        }
-
     }
 
 }
