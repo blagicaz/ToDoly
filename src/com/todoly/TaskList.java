@@ -28,4 +28,26 @@ public class TaskList {
             tasks.remove(index);
         }
     }
+
+    //Returns the number of completed tasks
+    public int numberDone() {
+        int count = 0;
+        for (Task task : tasks) {
+            if (task.getComplete()) {
+                count = count + 1;
+            }
+        }
+        return count;
+    }
+
+    //Returns the number of not completed tasks
+    public int numberNotDone() {
+        int count = 0;
+        for (Task task : tasks) {
+            if (!task.getComplete()) {
+                count = count + 1;
+            }
+        }
+        return count;
+    }
 }

@@ -11,10 +11,6 @@ public class CLI {
         reader = new Scanner(System.in);
     }
 
-    public void printWelcomeMessage() {
-        System.out.println(">> Welcome to ToDoly");
-        System.out.println(">> You have X tasks todo and Y tasks are done!");
-    }
 
     public void printMenuOptions() {
         System.out.println();

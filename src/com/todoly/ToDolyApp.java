@@ -24,6 +24,12 @@ public class ToDolyApp {
         taskList.addTask(t4);
     }
 
+    public void printWelcomeMessage() {
+        int notDone = taskList.numberNotDone();
+        int done = taskList.numberDone();
+        System.out.println(">> Welcome to ToDoly");
+        System.out.println(">> You have "+ notDone + " tasks todo and " + done + " tasks are done!");
+    }
     // Create all the tasks with assigned title
     public void createTask() {
         System.out.print("Enter task title: ");
@@ -123,7 +129,7 @@ public class ToDolyApp {
     // Main command loop.
     // Prints the menu and waits for user input until the user chooses to quit.
     public void run() {
-        cli.printWelcomeMessage();
+        printWelcomeMessage();
         boolean quit = false;
         while (!quit) {
             cli.printMenuOptions();
