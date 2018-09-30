@@ -36,12 +36,68 @@ public class ToDolyApp {
         taskList.addTask(t);
     }
 
+    public void editTask() {
+        cli.printTasks(taskList);
+        boolean valid = false;
+        while (valid == false) {
+            System.out.print("Enter the number of the task you want to edit => ");
+            String indexStr = cli.readUserInput();
+            int index = Integer.parseInt(indexStr);
+
+            valid = taskList.validIndex(index);
+            if (valid == true) {
+                Task task = taskList.getTasks().get(index);
+                cli.printEditOptions();
+                String userInput = cli.readUserInput();
+                processEditMenu(task, index, userInput);
+                System.out.println("Task has been successfully edited");
+            }
+            else {
+                System.out.println("Invalid index. Can't edit task");
+            }
+        }
+    }
+
+    public void processEditMenu(Task task, int taskIndex, String userInput) {
+
+        if (cli.validEditInput(userInput)) {
+            if (userInput.equals("1")) {
+                task.setComplete(true);
+            }
+            else if (userInput.equals("2")) {
+                task.setComplete(false);
+            }
+            else if (userInput.equals("3")) {
+                System.out.print("Enter new task title: ");
+                String newTitle = cli.readUserInput();
+                task.setTitle(newTitle);
+            }
+            else if (userInput.equals("4")) {
+                System.out.print("Enter new due date (format: YYYY-MM-DD): ");
+                String newDate = cli.readUserInput();
+                task.setDueDate(newDate);
+            }
+            else if (userInput.equals("5")) {
+                System.out.println("Enter new task project: ");
+                String newProject = cli.readUserInput();
+                task.setProject(newProject);
+            }
+            else if (userInput.equals("6")) {
+                System.out.println("Remove task");
+                taskList.removeTask(taskIndex);
+            }
+        }
+        else {
+            System.out.println("Unknown input");
+        }
+    }
+
     // Processing the user input.
     // Return true if the user choose to quit, false for all the other options.
     public boolean processInput(String userInput) {
         boolean quit = false;
 
-        if (cli.validInput(userInput)) {
+        if (cli.validMainInput(userInput)) {
             if (userInput.equals("1")) {
                 cli.printTasks(taskList);
             }
@@ -49,13 +105,16 @@ public class ToDolyApp {
                 createTask();
             }
             else if (userInput.equals("3")) {
+                editTask();
+            }
+            else if (userInput.equals("4")) {
                 System.out.println("Exiting app");
                 quit = true;
             }
 
         }
         else {
-            System.out.println("unknown input");
+            System.out.println("Unknown input");
         }
 
         return quit;
