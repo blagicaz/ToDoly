@@ -17,4 +17,15 @@ public class TaskList {
     public ArrayList<Task> getTasks() {
         return tasks;
     }
+
+    public boolean validIndex(int index) {
+        boolean valid = index >= 0 && index < tasks.size();
+        return valid;
+    }
+
+    public void removeTask(int index) {
+        if (validIndex(index)) {
+            tasks.remove(index);
+        }
+    }
 }
