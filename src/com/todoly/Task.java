@@ -14,10 +14,6 @@ public class Task {
         this.project = project;
     }
 
-    public Task(String title) {
-        this(title, null, null);
-    }
-
     public String getTitle() {
         return title;
     }
@@ -65,6 +61,5 @@ public class Task {
         result += "\nProject:\t" + project + "\n";
 
         return result;
-
     }
 }
