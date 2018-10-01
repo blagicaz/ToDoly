@@ -1,5 +1,7 @@
 package com.todoly;
 
+import java.util.ArrayList;
+
 public class ToDolyApp {
 
     private TaskList taskList;
@@ -9,14 +11,15 @@ public class ToDolyApp {
         taskList = new TaskList();
         cli = new CLI();
     }
-    // Temporary method used for testing/to be deleted in future
+
+    // Temporary method used for testing/to be deleted in future.
     public void tempCreateTasks() {
-        Task t1 = new Task("buy beer");
+        Task t1 = new Task("buy beer", "2018-10-09", "food");
         t1.setComplete(true);
-        Task t2 = new Task("clean bike");
-        Task t3 = new Task("do laundry");
+        Task t2 = new Task("clean bike", "2018-10-10", "work");
+        Task t3 = new Task("do laundry", "2018-10-09", "home");
         t3.setComplete(true);
-        Task t4 = new Task("watch tv");
+        Task t4 = new Task("watch tv", "2018-10-11", "home");
 
         taskList.addTask(t1);
         taskList.addTask(t2);
@@ -30,7 +33,23 @@ public class ToDolyApp {
         System.out.println(">> Welcome to ToDoly");
         System.out.println(">> You have "+ notDone + " tasks todo and " + done + " tasks are done!");
     }
-    // Create all the tasks with assigned title
+
+    public void printTasks(ArrayList<Task> tasks) {
+        for (Task task : tasks) {
+            System.out.println(task.toString());
+        }
+    }
+
+    // Prints all the tasks stored in the taskList with their index number.
+    public void printAllTasks() {
+        int counter = 0;
+        for (Task task : taskList.getTasks()) {
+            System.out.println(counter);
+            System.out.println(task.toString());
+            counter ++;
+        }
+    }
+
     public void createTask() {
         System.out.print("Enter task title: ");
         String title = cli.readUserInput();
@@ -42,8 +61,10 @@ public class ToDolyApp {
         taskList.addTask(t);
     }
 
+    // Prints all the tasks and user chooses a task to edit.
+    // Prints a edit submenu for the task selected.
     public void editTask() {
-        cli.printTasks(taskList);
+        printAllTasks();
         boolean valid = false;
         while (valid == false) {
             System.out.print("Enter the number of the task you want to edit => ");
@@ -53,9 +74,9 @@ public class ToDolyApp {
             valid = taskList.validIndex(index);
             if (valid == true) {
                 Task task = taskList.getTasks().get(index);
-                cli.printEditOptions();
+                cli.printEditTaskMenu();
                 String userInput = cli.readUserInput();
-                processEditMenu(task, index, userInput);
+                processEditTaskMenuInput(task, index, userInput);
                 System.out.println("Task has been successfully edited");
             }
             else {
@@ -64,9 +85,44 @@ public class ToDolyApp {
         }
     }
 
-    public void processEditMenu(Task task, int taskIndex, String userInput) {
+    //Prints the list task submenu and processing the user input.
+    public void listTasks() {
+        cli.printListTasksMenu();
+        String userInput = cli.readUserInput();
+        processListTasksMenuInput(userInput);
+    }
 
-        if (cli.validEditInput(userInput)) {
+    // Processing the user input.
+    // Return true if the user choose to quit, false for all the other options.
+    public boolean processMainMenuInput(String userInput) {
+        boolean quit = false;
+
+        if (cli.validMainMenuInput(userInput)) {
+            if (userInput.equals("1")) {
+                listTasks();
+            }
+            else if (userInput.equals("2")) {
+                createTask();
+            }
+            else if (userInput.equals("3")) {
+                editTask();
+            }
+            else if (userInput.equals("4")) {
+                System.out.println("Exiting app");
+                quit = true;
+            }
+        }
+        else {
+            System.out.println("Unknown input");
+        }
+
+        return quit;
+    }
+
+    //Processing the user input for the editTask submenu.
+    public void processEditTaskMenuInput(Task task, int taskIndex, String userInput) {
+
+        if (cli.validEditTaskMenuInput(userInput)) {
             if (userInput.equals("1")) {
                 task.setComplete(true);
             }
@@ -98,32 +154,28 @@ public class ToDolyApp {
         }
     }
 
-    // Processing the user input.
-    // Return true if the user choose to quit, false for all the other options.
-    public boolean processInput(String userInput) {
-        boolean quit = false;
+    //Processing the user input for the listTask submenu.
+    public void processListTasksMenuInput(String userInput) {
 
-        if (cli.validMainInput(userInput)) {
+        if (cli.validListTasksMenuInput(userInput)) {
             if (userInput.equals("1")) {
-                cli.printTasks(taskList);
+                printTasks(taskList.notDoneTasks());
             }
             else if (userInput.equals("2")) {
-                createTask();
+                printTasks(taskList.sortByDate());
             }
             else if (userInput.equals("3")) {
-                editTask();
+                System.out.println("Enter project name: ");
+                String project = cli.readUserInput();
+                printTasks(taskList.filterByProject(project));
             }
             else if (userInput.equals("4")) {
-                System.out.println("Exiting app");
-                quit = true;
+                printAllTasks();
             }
-
         }
         else {
             System.out.println("Unknown input");
         }
-
-        return quit;
     }
 
     // Main command loop.
@@ -132,14 +184,13 @@ public class ToDolyApp {
         printWelcomeMessage();
         boolean quit = false;
         while (!quit) {
-            cli.printMenuOptions();
+            cli.printMainMenu();
             String userInput = cli.readUserInput();
-            quit = processInput(userInput);
+            quit = processMainMenuInput(userInput);
         }
     }
 
     public static void main(String[] args) {
-
         ToDolyApp app = new ToDolyApp();
         app.tempCreateTasks();
         app.run();

@@ -4,15 +4,15 @@ import java.util.Scanner;
 
 public class CLI {
     private Scanner reader;
-    private static final String[] VALID_MAIN_INPUTS = {"1", "2", "3", "4",};
-    private static final String[] VALID_EDIT_INPUTS = {"1", "2", "3", "4", "5", "6"};
+    private static final String[] VALID_MAIN_MENU_INPUTS = {"1", "2", "3", "4",};
+    private static final String[] VALID_EDIT_MENU_INPUTS = {"1", "2", "3", "4", "5", "6"};
+    private static final String[] VALID_LIST_MENU_INPUTS = {"1", "2", "3", "4",};
 
     public CLI() {
         reader = new Scanner(System.in);
     }
 
-
-    public void printMenuOptions() {
+    public void printMainMenu() {
         System.out.println();
         System.out.println(">> Pick an option:");
         System.out.println(">> (1) Show Task List");
@@ -22,7 +22,7 @@ public class CLI {
         System.out.print("> ");
     }
 
-    public void printEditOptions() {
+    public void printEditTaskMenu() {
         System.out.println(">> Pick an option:");
         System.out.println(">> (1) Mark as done");
         System.out.println(">> (2) Mark as not done");
@@ -31,32 +31,20 @@ public class CLI {
         System.out.println(">> (5) Edit Task project");
         System.out.println(">> (6) Remove Task");
         System.out.print("> ");
-
     }
 
-    //Prints all the tasks stored in the taskList with their index number
-    public void printTasks(TaskList taskList) {
-        int counter = 0;
-        for (Task task : taskList.getTasks()) {
-            System.out.println(counter);
-            System.out.println(task.toString());
-            counter ++;
-        }
+    public void printListTasksMenu() {
+        System.out.println(">> Pick an option:");
+        System.out.println(">> (1) Show not completed tasks ");
+        System.out.println(">> (2) Sort tasks by date");
+        System.out.println(">> (3) Filter tasks by project");
+        System.out.println(">> (4) Show all tasks");
+        System.out.print("> ");
     }
 
     public String readUserInput() {
         String inputLine = reader.nextLine();
         return inputLine;
-    }
-
-    public boolean validMainInput(String userInput) {
-        boolean valid = validInput(userInput, VALID_MAIN_INPUTS);
-        return valid;
-    }
-
-    public boolean validEditInput(String userInput) {
-        boolean valid = validInput(userInput, VALID_EDIT_INPUTS);
-        return valid;
     }
 
     // Checks whether the user input is one of the valid inputs.
@@ -71,6 +59,21 @@ public class CLI {
             }
         }
         return false;
+    }
+
+    public boolean validMainMenuInput(String userInput) {
+        boolean valid = validInput(userInput, VALID_MAIN_MENU_INPUTS);
+        return valid;
+    }
+
+    public boolean validEditTaskMenuInput(String userInput) {
+        boolean valid = validInput(userInput, VALID_EDIT_MENU_INPUTS);
+        return valid;
+    }
+
+    public boolean validListTasksMenuInput(String userInput) {
+        boolean valid = validInput(userInput, VALID_LIST_MENU_INPUTS);
+        return valid;
     }
 
 }

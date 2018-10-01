@@ -1,6 +1,6 @@
 package com.todoly;
 
-public class Task {
+public class Task implements Comparable<Task> {
 
     private String title;
     private String dueDate;
@@ -12,10 +12,6 @@ public class Task {
         this.complete = false;
         this.dueDate = dueDate;
         this.project = project;
-    }
-
-    public Task(String title) {
-        this(title, null, null);
     }
 
     public String getTitle() {
@@ -65,6 +61,13 @@ public class Task {
         result += "\nProject:\t" + project + "\n";
 
         return result;
+    }
 
+    //Implemented comparison logic based on the dueDate field.
+    //Returns a integer result of comparing values.
+    @Override
+    public int compareTo(Task task) {
+        int result = this.dueDate.compareTo(task.dueDate);
+        return result;
     }
 }
