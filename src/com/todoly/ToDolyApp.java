@@ -1,5 +1,7 @@
 package com.todoly;
 
+import java.util.ArrayList;
+
 public class ToDolyApp {
 
     private TaskList taskList;
@@ -32,6 +34,12 @@ public class ToDolyApp {
         System.out.println(">> You have "+ notDone + " tasks todo and " + done + " tasks are done!");
     }
 
+    public void printTasks(ArrayList<Task> tasks) {
+        for (Task task : tasks) {
+            System.out.println(task.toString());
+        }
+    }
+
     // Prints all the tasks stored in the taskList with their index number.
     public void printAllTasks() {
         int counter = 0;
@@ -39,26 +47,6 @@ public class ToDolyApp {
             System.out.println(counter);
             System.out.println(task.toString());
             counter ++;
-        }
-    }
-
-    public void printNotDoneTasks() {
-        for (Task task : taskList.notDoneTasks()) {
-            System.out.println(task.toString());
-        }
-    }
-
-    public void printTasksByProject() {
-        System.out.println("Enter project name: ");
-        String project = cli.readUserInput();
-        for (Task task : taskList.filterByProject(project)) {
-            System.out.println(task.toString());
-        }
-    }
-
-    public void printTasksByDate() {
-        for (Task task : taskList.sortByDate()) {
-            System.out.println(task.toString());
         }
     }
 
@@ -171,13 +159,15 @@ public class ToDolyApp {
 
         if (cli.validListTasksMenuInput(userInput)) {
             if (userInput.equals("1")) {
-                printNotDoneTasks();
+                printTasks(taskList.notDoneTasks());
             }
             else if (userInput.equals("2")) {
-                printTasksByDate();
+                printTasks(taskList.sortByDate());
             }
             else if (userInput.equals("3")) {
-                printTasksByProject();
+                System.out.println("Enter project name: ");
+                String project = cli.readUserInput();
+                printTasks(taskList.filterByProject(project));
             }
             else if (userInput.equals("4")) {
                 printAllTasks();
