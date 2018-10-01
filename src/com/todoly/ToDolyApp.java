@@ -56,6 +56,12 @@ public class ToDolyApp {
         }
     }
 
+    public void printTasksByDate() {
+        for (Task task : taskList.sortByDate()) {
+            System.out.println(task.toString());
+        }
+    }
+
     public void createTask() {
         System.out.print("Enter task title: ");
         String title = cli.readUserInput();
@@ -168,7 +174,7 @@ public class ToDolyApp {
                 printNotDoneTasks();
             }
             else if (userInput.equals("2")) {
-
+                printTasksByDate();
             }
             else if (userInput.equals("3")) {
                 printTasksByProject();

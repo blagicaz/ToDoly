@@ -1,6 +1,7 @@
 package com.todoly;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class TaskList {
 
@@ -72,6 +73,14 @@ public class TaskList {
         }
         return projectList;
     }
+
+    //Creating a new ArrayList from the original one and return it sorted by date.
+    public ArrayList<Task> sortByDate() {
+        ArrayList<Task> sortedTasks = new ArrayList<>(tasks);
+        Collections.sort(sortedTasks);
+        return sortedTasks;
+    }
+
 }
 
 
