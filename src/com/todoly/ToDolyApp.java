@@ -64,11 +64,17 @@ public class ToDolyApp {
                 valid = taskList.validIndex(index);
                 if (valid == true) {
                     Task task = taskList.getTasks().get(index);
-                    cli.printEditTaskMenu();
-                    String userInput = cli.readUserInput();
-                    processEditTaskMenuInput(task, index, userInput);
-                    System.out.println("Task has been successfully edited");
-                } else {
+                    boolean success = false;
+                    while (success == false) {
+                        cli.printEditTaskMenu();
+                        String userInput = cli.readUserInput();
+                        success = processEditTaskMenuInput(task, index, userInput);
+                        if (success == true) {
+                            System.out.println("Task has been successfully edited");
+                        }
+                    }
+                }
+                else {
                     System.out.println("Invalid index. Can't edit task");
                 }
             }
@@ -113,8 +119,7 @@ public class ToDolyApp {
     }
 
     //Processing the user input for the editTask submenu.
-    public void processEditTaskMenuInput(Task task, int taskIndex, String userInput) {
-
+    public boolean processEditTaskMenuInput(Task task, int taskIndex, String userInput) {
         if (cli.validEditTaskMenuInput(userInput)) {
             if (userInput.equals("1")) {
                 task.setComplete(true);
@@ -141,9 +146,11 @@ public class ToDolyApp {
                 System.out.println("Remove task");
                 taskList.removeTask(taskIndex);
             }
+            return true;
         }
         else {
             System.out.println("Unknown input");
+            return false;
         }
     }
 
