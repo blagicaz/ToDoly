@@ -1,6 +1,8 @@
 package com.todoly;
 
-public class Task implements Comparable<Task> {
+import java.io.Serializable;
+
+public class Task implements Comparable<Task>, Serializable {
 
     private String title;
     private String dueDate;

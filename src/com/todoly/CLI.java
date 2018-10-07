@@ -18,7 +18,7 @@ public class CLI {
         System.out.println(">> (1) Show Task List");
         System.out.println(">> (2) Add New Task");
         System.out.println(">> (3) Edit / Remove Task");
-        System.out.println(">> (4) Quit");
+        System.out.println(">> (4) Save and Quit");
         System.out.print("> ");
     }
 

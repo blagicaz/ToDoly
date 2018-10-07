@@ -1,11 +1,15 @@
 package com.todoly;
 
+import java.io.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class ToDolyApp {
 
     private TaskList taskList;
     private CLI cli;
+    private static final String FILE_NAME = "ToDoly.dat";
 
     public ToDolyApp() {
         taskList = new TaskList();
@@ -178,9 +182,44 @@ public class ToDolyApp {
         }
     }
 
+    // Saves a binary version of the TaskList to a given file.
+    // The file is saved relative to the current project folder.
+    public void saveToFile() {
+        Path destination = Paths.get(FILE_NAME).toAbsolutePath();
+        try {
+            ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(destination.toString()));
+            os.writeObject(taskList);
+
+            os.close();
+        }
+        catch (IOException exc) {
+            System.err.println("Error saving to file" );
+            exc.printStackTrace();
+        }
+    }
+
+    // Reads a TaskList object from a file.
+    public void loadFromFile() {
+        Path destination = Paths.get(FILE_NAME).toAbsolutePath();
+        try {
+            File file = destination.toFile();
+            if (file.exists())
+            {
+                ObjectInputStream is = new ObjectInputStream(new FileInputStream(file));
+                this.taskList = (TaskList)is.readObject();
+                is.close();
+            }
+        }
+        catch (Exception e) {
+            System.err.println("Error when loading file");
+            e.printStackTrace();
+        }
+    }
+
     // Main command loop.
     // Prints the menu and waits for user input until the user chooses to quit.
     public void run() {
+        loadFromFile();
         printWelcomeMessage();
         boolean quit = false;
         while (!quit) {
@@ -188,11 +227,12 @@ public class ToDolyApp {
             String userInput = cli.readUserInput();
             quit = processMainMenuInput(userInput);
         }
+        saveToFile();
     }
 
     public static void main(String[] args) {
         ToDolyApp app = new ToDolyApp();
-        app.tempCreateTasks();
+        //app.tempCreateTasks();
         app.run();
     }
 }
