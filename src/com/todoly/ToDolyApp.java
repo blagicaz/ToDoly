@@ -16,21 +16,6 @@ public class ToDolyApp {
         cli = new CLI();
     }
 
-    // Temporary method used for testing/to be deleted in future.
-    public void tempCreateTasks() {
-        Task t1 = new Task("buy beer", "2018-10-09", "food");
-        t1.setComplete(true);
-        Task t2 = new Task("clean bike", "2018-10-10", "work");
-        Task t3 = new Task("do laundry", "2018-10-09", "home");
-        t3.setComplete(true);
-        Task t4 = new Task("watch tv", "2018-10-11", "home");
-
-        taskList.addTask(t1);
-        taskList.addTask(t2);
-        taskList.addTask(t3);
-        taskList.addTask(t4);
-    }
-
     public void printWelcomeMessage() {
         int notDone = taskList.numberNotDone();
         int done = taskList.numberDone();
@@ -232,7 +217,6 @@ public class ToDolyApp {
 
     public static void main(String[] args) {
         ToDolyApp app = new ToDolyApp();
-        //app.tempCreateTasks();
         app.run();
     }
 }
