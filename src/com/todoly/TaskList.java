@@ -1,9 +1,10 @@
 package com.todoly;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class TaskList {
+public class TaskList implements Serializable {
 
     private ArrayList<Task> tasks;
 
