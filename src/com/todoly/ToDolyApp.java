@@ -58,18 +58,22 @@ public class ToDolyApp {
         while (valid == false) {
             System.out.print("Enter the number of the task you want to edit => ");
             String indexStr = cli.readUserInput();
-            int index = Integer.parseInt(indexStr);
+            try {
+                int index = Integer.parseInt(indexStr);
 
-            valid = taskList.validIndex(index);
-            if (valid == true) {
-                Task task = taskList.getTasks().get(index);
-                cli.printEditTaskMenu();
-                String userInput = cli.readUserInput();
-                processEditTaskMenuInput(task, index, userInput);
-                System.out.println("Task has been successfully edited");
+                valid = taskList.validIndex(index);
+                if (valid == true) {
+                    Task task = taskList.getTasks().get(index);
+                    cli.printEditTaskMenu();
+                    String userInput = cli.readUserInput();
+                    processEditTaskMenuInput(task, index, userInput);
+                    System.out.println("Task has been successfully edited");
+                } else {
+                    System.out.println("Invalid index. Can't edit task");
+                }
             }
-            else {
-                System.out.println("Invalid index. Can't edit task");
+            catch (NumberFormatException e) {
+                System.out.println("Invalid input");
             }
         }
     }
