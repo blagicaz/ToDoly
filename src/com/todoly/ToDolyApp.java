@@ -86,9 +86,12 @@ public class ToDolyApp {
 
     //Prints the list task submenu and processing the user input.
     public void listTasks() {
-        cli.printListTasksMenu();
-        String userInput = cli.readUserInput();
-        processListTasksMenuInput(userInput);
+        boolean succsess = false;
+        while (succsess == false) {
+            cli.printListTasksMenu();
+            String userInput = cli.readUserInput();
+            succsess = processListTasksMenuInput(userInput);
+        }
     }
 
     // Processing the user input.
@@ -149,13 +152,13 @@ public class ToDolyApp {
             return true;
         }
         else {
-            System.out.println("Unknown input");
+            System.out.println("Unknown input \n");
             return false;
         }
     }
 
     //Processing the user input for the listTask submenu.
-    public void processListTasksMenuInput(String userInput) {
+    public boolean processListTasksMenuInput(String userInput) {
 
         if (cli.validListTasksMenuInput(userInput)) {
             if (userInput.equals("1")) {
@@ -172,9 +175,11 @@ public class ToDolyApp {
             else if (userInput.equals("4")) {
                 printAllTasks();
             }
+            return true;
         }
         else {
-            System.out.println("Unknown input");
+            System.out.println("Unknown input \n");
+            return false;
         }
     }
 
