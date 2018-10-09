@@ -3,7 +3,10 @@ package com.todoly;
 import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ToDolyApp {
 
@@ -46,8 +49,15 @@ public class ToDolyApp {
         String project = cli.readUserInput();
         System.out.print("Enter due date (format: YYYY-MM-DD): ");
         String dueDate = cli.readUserInput();
-        Task t = new Task(title, dueDate, project);
-        taskList.addTask(t);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date date = sdf.parse(dueDate);
+            Task t = new Task(title, date, project);
+            taskList.addTask(t);
+        }
+        catch (ParseException e) {
+            System.out.println(dueDate + " is not a valid date");
+        }
     }
 
     // Prints all the tasks and user chooses a task to edit.
@@ -138,7 +148,15 @@ public class ToDolyApp {
             else if (userInput.equals("4")) {
                 System.out.print("Enter new due date (format: YYYY-MM-DD): ");
                 String newDate = cli.readUserInput();
-                task.setDueDate(newDate);
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                try {
+                    Date date = sdf.parse(newDate);
+                    task.setDueDate(date);
+                }
+                catch (ParseException e) {
+                    System.out.println(newDate + " is not a valid date \n");
+                    return false;
+                }
             }
             else if (userInput.equals("5")) {
                 System.out.println("Enter new task project: ");
