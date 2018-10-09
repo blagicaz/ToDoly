@@ -1,15 +1,17 @@
 package com.todoly;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Task implements Comparable<Task>, Serializable {
 
     private String title;
-    private String dueDate;
+    private Date dueDate;
     private boolean complete;
     private String project;
 
-    public Task(String title, String dueDate, String project) {
+    public Task(String title, Date dueDate, String project) {
         this.title = title;
         this.complete = false;
         this.dueDate = dueDate;
@@ -32,11 +34,11 @@ public class Task implements Comparable<Task>, Serializable {
         this.complete = complete;
     }
 
-    public String getDueDate() {
+    public Date getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate(String dueDate) {
+    public void setDueDate(Date dueDate) {
         this.dueDate = dueDate;
     }
 
@@ -59,7 +61,8 @@ public class Task implements Comparable<Task>, Serializable {
         else {
             result += "not done";
         }
-        result += "\nDue Date:\t" + dueDate;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        result += "\nDue Date:\t" + sdf.format(dueDate);
         result += "\nProject:\t" + project + "\n";
 
         return result;
