@@ -49,7 +49,7 @@ public class CLI {
 
     // Checks whether the user input is one of the valid inputs.
     // Returns true if it is, false otherwise.
-    private boolean validInput(String userInput, String[] validInputs) {
+    protected boolean validMenuInput(String userInput, String[] validInputs) {
         if (userInput == null) {
             return false;
         }
@@ -62,17 +62,17 @@ public class CLI {
     }
 
     public boolean validMainMenuInput(String userInput) {
-        boolean valid = validInput(userInput, VALID_MAIN_MENU_INPUTS);
+        boolean valid = validMenuInput(userInput, VALID_MAIN_MENU_INPUTS);
         return valid;
     }
 
     public boolean validEditTaskMenuInput(String userInput) {
-        boolean valid = validInput(userInput, VALID_EDIT_MENU_INPUTS);
+        boolean valid = validMenuInput(userInput, VALID_EDIT_MENU_INPUTS);
         return valid;
     }
 
     public boolean validListTasksMenuInput(String userInput) {
-        boolean valid = validInput(userInput, VALID_LIST_MENU_INPUTS);
+        boolean valid = validMenuInput(userInput, VALID_LIST_MENU_INPUTS);
         return valid;
     }
 
