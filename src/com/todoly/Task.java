@@ -51,7 +51,7 @@ public class Task implements Comparable<Task>, Serializable {
     }
 
     public String toString() {
-        String result = "    ~~~~~~~~~~~\n";
+        String result = "\t~~~~~~~~~~~\n";
 
         result += "Task:\t\t" + title + "\nStatus:\t\t";
 

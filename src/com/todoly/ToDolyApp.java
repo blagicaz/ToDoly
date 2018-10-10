@@ -36,7 +36,7 @@ public class ToDolyApp {
     public void printAllTasks() {
         int counter = 0;
         for (Task task : taskList.getTasks()) {
-            System.out.println(counter);
+            System.out.print(counter + 1);
             System.out.println(task.toString());
             counter ++;
         }
@@ -70,7 +70,7 @@ public class ToDolyApp {
             String indexStr = cli.readUserInput();
             try {
                 int index = Integer.parseInt(indexStr);
-
+                index = index - 1;
                 valid = taskList.validIndex(index);
                 if (valid == true) {
                     Task task = taskList.getTasks().get(index);
