@@ -1,6 +1,6 @@
 # ToDoly
 ToDoly is a todo list application written in Java that uses a text based user interface. 
-
+[Class Diagram](https://github.com/blagicaz/ToDoly/blob/master/Class%20Diagram%20-%20Version%201.pdf)
 ## Prerequisites
 Java version 8+
 
@@ -75,7 +75,9 @@ will be saved when option number `4` is chosen.
 
 
 ## Running the tests
-To do: `Explanation on how to run the automated tests for the app`.
+The todoly package contains tests in JUnit. 
+There are two classes `TaskListTest` class and `CLITest` class that test the methods of `TaskList` and `CLI` classes.
+
 
 ## Author
 > Blagica Zafirovska
