@@ -58,10 +58,12 @@ public class ToDolyApp {
         System.out.print("Enter due date (format: YYYY-MM-DD): ");
         String dueDate = cli.readUserInput();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        sdf.setLenient(false);
         try {
             Date date = sdf.parse(dueDate);
             Task t = new Task(title, date, project);
             taskList.addTask(t);
+            System.out.println("Task has been successfully added");
         }
         catch (ParseException e) {
             System.out.println(dueDate + " is not a valid date");
@@ -74,7 +76,7 @@ public class ToDolyApp {
         printAllTasks();
         boolean valid = false;
         while (valid == false) {
-            System.out.print("Enter the number of the task you want to edit => ");
+            System.out.print("Enter the number of the task you want to edit: \n");
             String indexStr = cli.readUserInput();
             try {
                 int index = Integer.parseInt(indexStr);
@@ -157,6 +159,7 @@ public class ToDolyApp {
                 System.out.print("Enter new due date (format: YYYY-MM-DD): ");
                 String newDate = cli.readUserInput();
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                sdf.setLenient(false);
                 try {
                     Date date = sdf.parse(newDate);
                     task.setDueDate(date);
