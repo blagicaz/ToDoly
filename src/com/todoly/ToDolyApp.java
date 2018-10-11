@@ -1,3 +1,10 @@
+/**
+ * This is the main class of the ToDolyApp.
+ * It contains a loop which waits for user input and processes the input until the user wants to quit.
+ * It manages the input and actions of all the menus.
+ * This class maintains the state of the tasks in the list and also saves and loads the taskList from disk.
+ * @author Blagica Zafirovska
+ */
 package com.todoly;
 
 import java.io.*;
@@ -42,6 +49,7 @@ public class ToDolyApp {
         }
     }
 
+    //
     public void createTask() {
         System.out.print("Enter task title: ");
         String title = cli.readUserInput();

@@ -1,3 +1,8 @@
+/**
+ * This class stores all the information about a task.
+ * Details are shown by task title, due date, completion, and project name.
+ */
+
 package com.todoly;
 
 import java.io.Serializable;
@@ -50,6 +55,10 @@ public class Task implements Comparable<Task>, Serializable {
         this.project = project;
     }
 
+    /**
+     * String representation of the task.
+     * @return a task in String format
+     */
     public String toString() {
         String result = "\t~~~~~~~~~~~\n";
 
@@ -68,8 +77,11 @@ public class Task implements Comparable<Task>, Serializable {
         return result;
     }
 
-    //Implemented comparison logic based on the dueDate field.
-    //Returns a integer result of comparing values.
+    /**
+     * Implements comparison logic based on the dueDate field.
+     * @param task the task to compare this task to.
+     * @return an integer result of comparing values.
+     */
     @Override
     public int compareTo(Task task) {
         int result = this.dueDate.compareTo(task.dueDate);

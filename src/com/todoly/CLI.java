@@ -1,3 +1,7 @@
+/**
+ * The CLI class provides helper methods for the command line interface of the ToDolyApp.
+ * It provides methods for validating the inputs to the menus.
+ */
 package com.todoly;
 
 import java.util.Scanner;
@@ -47,8 +51,12 @@ public class CLI {
         return inputLine;
     }
 
-    // Checks whether the user input is one of the valid inputs.
-    // Returns true if it is, false otherwise.
+    /**
+     * Checks whether the user input is one of the valid inputs.
+     * @param userInput the input that is to be validated
+     * @param validInputs all the valid inputs for the menu
+     * @return true if userInput is one of the valid inputs, false otherwise
+      */
     protected boolean validMenuInput(String userInput, String[] validInputs) {
         if (userInput == null) {
             return false;

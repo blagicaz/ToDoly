@@ -1,3 +1,9 @@
+/**
+ * This class contains and maintains the list with arbitrary number of tasks
+ * and provides all the necessary methods to operate on the tasks.
+ * It does not initiate actions on its own behalf and all it's activities
+ * are driven by the other classes.
+*/
 package com.todoly;
 
 import java.io.Serializable;
@@ -12,6 +18,10 @@ public class TaskList implements Serializable {
         tasks = new ArrayList<>();
     }
 
+    /**
+     * Adds a new task to the task list.
+     * @param newTask the task to add to the list
+     */
     public void addTask(Task newTask) {
         tasks.add(newTask);
     }
@@ -20,18 +30,30 @@ public class TaskList implements Serializable {
         return tasks;
     }
 
+    /**
+     * Checks if index number of the task exists.
+     * @param index task index number
+     * @return true if the index number is valid, false otherwise
+     */
     public boolean validIndex(int index) {
         boolean valid = index >= 0 && index < tasks.size();
         return valid;
     }
 
+    /**
+     * Removes a task from the taskList according to the index number.
+     * @param index task index number
+     */
     public void removeTask(int index) {
         if (validIndex(index)) {
             tasks.remove(index);
         }
     }
 
-    //Returns the number of completed tasks.
+    /**
+     * Counts all the tasks that are completed.
+     * @return the number of completed tasks
+     */
     public int numberDone() {
         int count = 0;
         for (Task task : tasks) {
@@ -42,7 +64,10 @@ public class TaskList implements Serializable {
         return count;
     }
 
-    //Returns the number of not completed tasks.
+    /**
+     * Counts all the tasks that are not done yet.
+     * @return the number of not completed tasks
+     */
     public int numberNotDone() {
         int count = 0;
         for (Task task : tasks) {
@@ -53,7 +78,10 @@ public class TaskList implements Serializable {
         return count;
     }
 
-    //Returns all the task that are not done.
+    /**
+     * Returns a list of all the task that are not done.
+     * @return a list of the not completed tasks
+     */
     public ArrayList<Task> notDoneTasks() {
         ArrayList<Task> taskList = new ArrayList<>();
         for (Task task : tasks) {
@@ -64,7 +92,11 @@ public class TaskList implements Serializable {
         return taskList;
     }
 
-    //Returns the list of tasks that match with the given project.
+    /**
+     * Filters the tasks by given project name
+     * @param project name of the task project category
+     * @return a list of tasks that match with the given project.
+     */
     public ArrayList<Task> filterByProject(String project) {
         ArrayList<Task> projectList = new ArrayList<>();
         for (Task task : tasks) {
@@ -75,7 +107,10 @@ public class TaskList implements Serializable {
         return projectList;
     }
 
-    //Creating a new ArrayList from the original one and return it sorted by date.
+    /**
+     * Sorts the tasks by date.
+     * @return a list of tasks sorted by date.
+     */
     public ArrayList<Task> sortByDate() {
         ArrayList<Task> sortedTasks = new ArrayList<>(tasks);
         Collections.sort(sortedTasks);
